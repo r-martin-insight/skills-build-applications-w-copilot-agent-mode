@@ -1,5 +1,5 @@
 import express from 'express';
-import { apiBaseUrl } from './config/apiUrl.js';
+import { apiBaseUrl, apiPort } from './config/apiUrl.js';
 import { connectDatabase } from './config/database.js';
 import activitiesRouter from './routes/activities.js';
 import leaderboardRouter from './routes/leaderboard.js';
@@ -8,7 +8,6 @@ import usersRouter from './routes/users.js';
 import workoutsRouter from './routes/workouts.js';
 
 const app = express();
-const port = Number(process.env.PORT) || 8000;
 
 app.use(express.json());
 
@@ -29,7 +28,7 @@ app.use((error: Error, _request: express.Request, response: express.Response, _n
 
 connectDatabase()
   .then(() => {
-    app.listen(port, () => {
+    app.listen(apiPort, () => {
       console.log(`OctoFit Tracker API listening at ${apiBaseUrl}`);
     });
   })
