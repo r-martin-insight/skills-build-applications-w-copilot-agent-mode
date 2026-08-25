@@ -8,6 +8,11 @@ const columns = [
   { key: 'preferredWorkout', label: 'Preferred workout' },
 ]
 
+const codespaceApiEndpoint = `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/`
+const endpointLabel = import.meta.env.VITE_CODESPACE_NAME
+  ? codespaceApiEndpoint
+  : 'http://localhost:8000/api/users/'
+
 export default function Users() {
   return (
     <ResourceView
@@ -15,6 +20,7 @@ export default function Users() {
       resource="users"
       description="Member profiles and personal fitness goals."
       columns={columns}
+      endpointLabel={endpointLabel}
     />
   )
 }

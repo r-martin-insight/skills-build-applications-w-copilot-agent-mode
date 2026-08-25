@@ -9,6 +9,11 @@ const columns = [
   { key: 'notes', label: 'Notes' },
 ]
 
+const codespaceApiEndpoint = `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/`
+const endpointLabel = import.meta.env.VITE_CODESPACE_NAME
+  ? codespaceApiEndpoint
+  : 'http://localhost:8000/api/activities/'
+
 export default function Activities() {
   return (
     <ResourceView
@@ -16,6 +21,7 @@ export default function Activities() {
       resource="activities"
       description="Recent logged workouts from the OctoFit community."
       columns={columns}
+      endpointLabel={endpointLabel}
     />
   )
 }

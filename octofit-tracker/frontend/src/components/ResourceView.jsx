@@ -29,7 +29,7 @@ function getItemKey(item, index) {
   return item._id ?? item.id ?? item.username ?? item.name ?? `${index}`
 }
 
-export default function ResourceView({ title, resource, description, columns }) {
+export default function ResourceView({ title, resource, description, columns, endpointLabel }) {
   const [items, setItems] = useState([])
   const [status, setStatus] = useState('loading')
   const [error, setError] = useState('')
@@ -65,7 +65,7 @@ export default function ResourceView({ title, resource, description, columns }) 
     <section className="resource-view">
       <div className="resource-heading">
         <div>
-          <p className="eyebrow">{getApiUrl(resource)}</p>
+          <p className="eyebrow">{endpointLabel ?? getApiUrl(resource)}</p>
           <h2>{title}</h2>
           <p>{description}</p>
         </div>

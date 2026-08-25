@@ -9,6 +9,11 @@ const columns = [
   { key: 'recommendedForGoal', label: 'Best for' },
 ]
 
+const codespaceApiEndpoint = `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`
+const endpointLabel = import.meta.env.VITE_CODESPACE_NAME
+  ? codespaceApiEndpoint
+  : 'http://localhost:8000/api/workouts/'
+
 export default function Workouts() {
   return (
     <ResourceView
@@ -16,6 +21,7 @@ export default function Workouts() {
       resource="workouts"
       description="Recommended sessions aligned to user fitness goals."
       columns={columns}
+      endpointLabel={endpointLabel}
     />
   )
 }
